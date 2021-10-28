@@ -8,7 +8,7 @@ class FollowerList extends React.Component {
         return(<div className="followersList">
            {
                 followers.map(follower => {
-                    return <Follower follower={follower} />
+                    return <Follower key={follower.id} follower={follower} />
                 })
             }
 

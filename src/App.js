@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import User from './components/User';
 import FollowerList from './components/FollowerList';
+import "./App.css"
 
 
 class App extends React.Component {
@@ -32,20 +33,36 @@ class App extends React.Component {
     }
 
   }
+  
+  handleChange = (e) => {
+    this.setState({
+      ...this.state,
+      currentUser: e.target.value
+    })
+  }
 
+  handleSubmit = (e)=> {
+    e.preventDefault()
+    axios.get(`https://api.github.com/users/${this.state.currentUser}`)
+    .then (res => {
+      this.setState({
+        ...this.state,
+        info:res.data
+      });
+    })
+  }
   render() {
-    // console.log(this.state.followers)
-    return(<div>
+    return(<div className="app">
       <h1>Github Card</h1>
-
-      <form>
-        <input type="search" placeholder="Github Handle" /> 
+      <form onSubmit={this.handleSubmit}>
+        <input type="search" placeholder="Github Handle" onChange={this.handleChange}/> 
         <button>Search</button>
       </form>
-
+        <div className="loggin-user">
         <User info={this.state.info} />
+        </div>
+        <h4> Followers: </h4>
         <FollowerList followers={this.state.followers}/>
-        
     </div>);
   }
 }

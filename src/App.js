@@ -55,7 +55,7 @@ class App extends React.Component {
     return(<div className="app">
       <h1>Github Card</h1>
       <form onSubmit={this.handleSubmit}>
-        <input type="search" placeholder="Github Handle" onChange={this.handleChange}/> 
+        <input type="search" placeholder="Github Username" onChange={this.handleChange}/> 
         <button>Search</button>
       </form>
         <div className="loggin-user">
@@ -64,7 +64,7 @@ class App extends React.Component {
         <h4> Followers: </h4>
         <FollowerList followers={this.state.followers}/>
     </div>);
-  }
+  } 
 }
 
 export default App;
